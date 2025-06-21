@@ -1,0 +1,54 @@
+networks:
+  health-network:
+    driver: bridge
+
+services:
+  patients-service:
+    build: ./patients-service
+    container_name: patients-service
+    ports:
+      - "8081:8081"
+    networks:
+      - health-network
+    restart: unless-stopped
+
+  doctors-service:
+    build: ./doctors-service
+    container_name: doctors-service
+    ports:
+      - "8082:8082"
+    networks:
+      - health-network
+    restart: unless-stopped
+
+  appointments-service:
+    build: ./appointments-service
+    container_name: appointments-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      - patients-service
+      - doctors-service
+    networks:
+      - health-network
+    environment:
+      - PATIENTS_SERVICE_URL=http://patients-service:8081
+      - DOCTORS_SERVICE_URL=http://doctors-service:8082
+    restart: unless-stopped
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: health-api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - patients-service
+      - doctors-service
+      - appointments-service
+    networks:
+      - health-network
+    environment:
+      - PATIENTS_SERVICE_URL=http://patients-service:8081
+      - DOCTORS_SERVICE_URL=http://doctors-service:8082
+      - APPOINTMENTS_SERVICE_URL=http://appointments-service:8083
+    restart: unless-stopped

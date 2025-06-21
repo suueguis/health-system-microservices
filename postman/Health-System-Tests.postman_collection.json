@@ -1,0 +1,273 @@
+{
+	"info": {
+		"name": "Sistema de Salud - Microservicios Tests",
+		"description": "Colección completa de pruebas para el sistema de salud - Samuel Tabares León",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "🏥 Health Checks",
+			"item": [
+				{
+					"name": "API Gateway Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/health"
+					}
+				},
+				{
+					"name": "Patients Service Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8081/health"
+					}
+				},
+				{
+					"name": "Doctors Service Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/health"
+					}
+				},
+				{
+					"name": "Appointments Service Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8083/health"
+					}
+				}
+			]
+		},
+		{
+			"name": "👥 Patients (via Gateway)",
+			"item": [
+				{
+					"name": "Create Patient - Juan Pérez",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"full_name\": \"Juan Carlos Pérez García\",\n  \"document_id\": \"12345678\",\n  \"email\": \"juan.perez@email.com\",\n  \"phone\": \"3001234567\",\n  \"birth_date\": \"1985-03-15\",\n  \"gender\": \"masculino\",\n  \"blood_type\": \"O+\",\n  \"address\": \"Calle 123 #45-67, Bogotá\",\n  \"emergency_contact_name\": \"María Pérez\",\n  \"emergency_contact_phone\": \"3019876543\",\n  \"medical_history\": \"Hipertensión controlada\",\n  \"allergies\": \"Penicilina\",\n  \"current_medications\": \"Losartán 50mg\"\n}"
+						},
+						"url": "http://localhost:8080/api/patients"
+					}
+				},
+				{
+					"name": "Create Patient - María González",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"full_name\": \"María Fernanda González López\",\n  \"document_id\": \"87654321\",\n  \"email\": \"maria.gonzalez@email.com\",\n  \"phone\": \"3025551234\",\n  \"birth_date\": \"1992-07-22\",\n  \"gender\": \"femenino\",\n  \"blood_type\": \"A+\",\n  \"address\": \"Carrera 456 #78-90, Medellín\",\n  \"emergency_contact_name\": \"Carlos González\",\n  \"emergency_contact_phone\": \"3031112222\",\n  \"medical_history\": \"Sin antecedentes relevantes\",\n  \"allergies\": \"Ninguna conocida\",\n  \"current_medications\": \"Ninguno\"\n}"
+						},
+						"url": "http://localhost:8080/api/patients"
+					}
+				},
+				{
+					"name": "Get All Patients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/patients"
+					}
+				},
+				{
+					"name": "Get Patient by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/patients/1"
+					}
+				},
+				{
+					"name": "Search Patients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/patients/search/juan"
+					}
+				}
+			]
+		},
+		{
+			"name": "👨‍⚕️ Doctors (via Gateway)",
+			"item": [
+				{
+					"name": "Create Doctor - Dr. García (Cardiología)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"full_name\": \"Dr. Roberto García Mendoza\",\n  \"specialty\": \"cardiologia\",\n  \"license_number\": \"MED-12345\",\n  \"email\": \"dr.garcia@hospital.com\",\n  \"phone\": \"3108889999\",\n  \"office_address\": \"Hospital Central, Consultorio 301\",\n  \"working_days\": [\"lunes\", \"martes\", \"miercoles\", \"jueves\", \"viernes\"],\n  \"start_time\": \"08:00:00\",\n  \"end_time\": \"17:00:00\",\n  \"consultation_duration\": 45,\n  \"consultation_fee\": 150000,\n  \"years_experience\": 15,\n  \"biography\": \"Especialista en cardiología con 15 años de experiencia.\"\n}"
+						},
+						"url": "http://localhost:8080/api/doctors"
+					}
+				},
+				{
+					"name": "Create Doctor - Dra. Martínez (Pediatría)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"full_name\": \"Dra. Ana Martínez Rodríguez\",\n  \"specialty\": \"pediatria\",\n  \"license_number\": \"MED-67890\",\n  \"email\": \"dra.martinez@hospital.com\",\n  \"phone\": \"3117778888\",\n  \"office_address\": \"Hospital Central, Consultorio 205\",\n  \"working_days\": [\"lunes\", \"miercoles\", \"viernes\", \"sabado\"],\n  \"start_time\": \"09:00:00\",\n  \"end_time\": \"16:00:00\",\n  \"consultation_duration\": 30,\n  \"consultation_fee\": 120000,\n  \"years_experience\": 8,\n  \"biography\": \"Pediatra especializada en cuidado infantil.\"\n}"
+						},
+						"url": "http://localhost:8080/api/doctors"
+					}
+				},
+				{
+					"name": "Get All Doctors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/doctors"
+					}
+				},
+				{
+					"name": "Get Doctor by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/doctors/1"
+					}
+				},
+				{
+					"name": "Get Doctors by Specialty",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/doctors/specialty/cardiologia"
+					}
+				}
+			]
+		},
+		{
+			"name": "📅 Appointments (via Gateway)",
+			"item": [
+				{
+					"name": "Create Appointment - Juan con Dr. García",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"patient_id\": 1,\n  \"doctor_id\": 1,\n  \"appointment_date\": \"2025-06-25\",\n  \"appointment_time\": \"10:00:00\",\n  \"appointment_type\": \"consulta\",\n  \"priority\": \"normal\",\n  \"reason\": \"Control de hipertensión y revisión cardiológica general\",\n  \"notes\": \"Paciente refiere dolor en el pecho ocasional\"\n}"
+						},
+						"url": "http://localhost:8080/api/appointments"
+					}
+				},
+				{
+					"name": "Create Appointment - María con Dra. Martínez",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"patient_id\": 2,\n  \"doctor_id\": 2,\n  \"appointment_date\": \"2025-06-26\",\n  \"appointment_time\": \"11:30:00\",\n  \"appointment_type\": \"consulta\",\n  \"priority\": \"normal\",\n  \"reason\": \"Consulta de medicina general y chequeo preventivo\",\n  \"notes\": \"Primera consulta con la doctora\"\n}"
+						},
+						"url": "http://localhost:8080/api/appointments"
+					}
+				},
+				{
+					"name": "Get All Appointments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/appointments"
+					}
+				},
+				{
+					"name": "Get Appointment by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/appointments/1"
+					}
+				},
+				{
+					"name": "Get Patient Appointments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/appointments/patient/1"
+					}
+				},
+				{
+					"name": "Complete Appointment with Diagnosis",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"diagnosis\": \"Hipertensión arterial controlada. ECG normal.\",\n  \"treatment\": \"Continuar con Losartán 50mg. Control en 3 meses.\",\n  \"next_appointment_needed\": true,\n  \"next_appointment_notes\": \"Control en 3 meses para evaluación\"\n}"
+						},
+						"url": "http://localhost:8080/api/appointments/1/complete"
+					}
+				}
+			]
+		},
+		{
+			"name": "📊 Dashboard y Reportes",
+			"item": [
+				{
+					"name": "Get Dashboard Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/dashboard"
+					}
+				},
+				{
+					"name": "API Gateway Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/"
+					}
+				}
+			]
+		}
+	]
+}
